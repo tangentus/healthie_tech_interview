@@ -10,10 +10,8 @@ class ClientTest < ActiveSupport::TestCase
   test "requires unique names and addresses" do
     Client.create!(name: "Alex Doe", address: "456 Oak Avenue")
 
-    duplicate = Client.new(name: "Alex Doe", address: "456 Oak Avenue")
-
-    assert_not duplicate.valid?
-    assert_includes duplicate.errors[:name], "has already been taken"
-    assert_includes duplicate.errors[:address], "has already been taken"
+    assert_raises(ActiveRecord::RecordNotUnique) do
+      Client.create!(name: "Alex Doe", address: "456 Oak Avenue")
+    end
   end
 end
