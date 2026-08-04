@@ -1,0 +1,7 @@
+# Project Instructions
+
+- Use RVM for Ruby version management.
+- Always follow test-driven development when applying changes: update or add tests first, confirm the expected failure, implement the change, and then refactor with the tests passing.
+- Use RuboCop for linting and ensure linting passes before creating any commit.
+- Ensure the complete test suite passes before creating any commit.
+- Use Conventional Commits verbiage for every commit message.
