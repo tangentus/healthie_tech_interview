@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_04_171000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_04_172000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -21,6 +21,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_04_171000) do
     t.datetime "updated_at", null: false
     t.index ["address"], name: "index_clients_on_address", unique: true
     t.index ["name"], name: "index_clients_on_name", unique: true
+  end
+
+  create_table "journal_entries", force: :cascade do |t|
+    t.text "body", null: false
+    t.bigint "client_id", null: false
+    t.datetime "created_at", null: false
+    t.bigint "provider_client_join_id", comment: "Limits this journal entry to a particular provider when present"
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_journal_entries_on_client_id"
+    t.index ["provider_client_join_id"], name: "index_journal_entries_on_provider_client_join_id"
   end
 
   create_table "provider_client_joins", force: :cascade do |t|
@@ -43,6 +53,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_04_171000) do
     t.index ["name"], name: "index_providers_on_name", unique: true
   end
 
+  add_foreign_key "journal_entries", "clients"
+  add_foreign_key "journal_entries", "provider_client_joins"
   add_foreign_key "provider_client_joins", "clients"
   add_foreign_key "provider_client_joins", "providers"
 end
