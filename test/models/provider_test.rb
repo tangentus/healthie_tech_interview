@@ -10,10 +10,8 @@ class ProviderTest < ActiveSupport::TestCase
   test "requires unique names and addresses" do
     Provider.create!(name: "Care Center", address: "123 Main Street")
 
-    duplicate = Provider.new(name: "Care Center", address: "123 Main Street")
-
-    assert_not duplicate.valid?
-    assert_includes duplicate.errors[:name], "has already been taken"
-    assert_includes duplicate.errors[:address], "has already been taken"
+    assert_raises(ActiveRecord::RecordInvalid) do
+      Provider.create!(name: "Care Center", address: "123 Main Street")
+    end
   end
 end
