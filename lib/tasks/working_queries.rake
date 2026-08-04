@@ -2,7 +2,7 @@
 #   bundle exec rake 'working_queries:clients_for_provider[PROVIDER_ID]'
 #   bundle exec rake 'working_queries:providers_for_client[CLIENT_ID]'
 #   bundle exec rake 'working_queries:journals_for_client[CLIENT_ID,SORT_COLUMN,SORT_DIRECTION]'
-#   bundle exec rake 'working_queries:journals_for_all_clients[PROVIDER_ID]'
+#   bundle exec rake 'working_queries:journals_for_all_clients[PROVIDER_ID,SORT_COLUMN,SORT_DIRECTION]'
 
 namespace :working_queries do
   desc "All clients for a given provider"
