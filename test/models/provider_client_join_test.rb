@@ -2,8 +2,8 @@ require "test_helper"
 
 class ProviderClientJoinTest < ActiveSupport::TestCase
   test "loads providers and clients through the join" do
-    provider = Provider.create!(name: "Care Center", address: "123 Main Street")
-    client = Client.create!(name: "Alex Doe", address: "456 Oak Avenue")
+    provider = Provider.create!(name: "Care Center", email_address: "provider@example.com")
+    client = Client.create!(name: "Alex Doe", email_address: "client@example.com")
 
     provider.provider_client_joins.create!(client:, plan: :basic)
 

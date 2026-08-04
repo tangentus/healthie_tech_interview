@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_04_172000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_04_173000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "clients", force: :cascade do |t|
-    t.text "address", null: false
     t.datetime "created_at", null: false
+    t.text "email_address", null: false
     t.text "name", null: false
     t.datetime "updated_at", null: false
-    t.index ["address"], name: "index_clients_on_address", unique: true
+    t.index ["email_address"], name: "index_clients_on_email_address", unique: true
     t.index ["name"], name: "index_clients_on_name", unique: true
   end
 
@@ -45,11 +45,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_04_172000) do
   end
 
   create_table "providers", force: :cascade do |t|
-    t.text "address", null: false
     t.datetime "created_at", null: false
+    t.text "email_address", null: false
     t.text "name", null: false
     t.datetime "updated_at", null: false
-    t.index ["address"], name: "index_providers_on_address", unique: true
+    t.index ["email_address"], name: "index_providers_on_email_address", unique: true
     t.index ["name"], name: "index_providers_on_name", unique: true
   end
 

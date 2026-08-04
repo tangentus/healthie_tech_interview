@@ -3,5 +3,5 @@ class Provider < ApplicationRecord
   has_many :clients, through: :provider_client_joins
 
   validates :name, uniqueness: true
-  validates :address, uniqueness: true
+  validates :email_address, uniqueness: true
 end

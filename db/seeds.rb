@@ -1,16 +1,20 @@
 providers = [
-  { name: "Harbor Health", address: "100 Harbor Way" },
-  { name: "Summit Wellness", address: "200 Summit Avenue" }
+  { name: "Harbor Health", email_address: "contact@harbor-health.example" },
+  { name: "Summit Wellness", email_address: "contact@summit-wellness.example" }
 ].to_h do |attributes|
-  [ attributes[:name], Provider.find_or_create_by!(attributes) ]
+  provider = Provider.find_or_initialize_by(name: attributes[:name])
+  provider.update!(attributes)
+  [ attributes[:name], provider ]
 end
 
 clients = [
-  { name: "Alex Morgan", address: "10 Maple Street" },
-  { name: "Blair Chen", address: "20 Oak Street" },
-  { name: "Casey Rivera", address: "30 Pine Street" }
+  { name: "Alex Morgan", email_address: "alex.morgan@example.com" },
+  { name: "Blair Chen", email_address: "blair.chen@example.com" },
+  { name: "Casey Rivera", email_address: "casey.rivera@example.com" }
 ].to_h do |attributes|
-  [ attributes[:name], Client.find_or_create_by!(attributes) ]
+  client = Client.find_or_initialize_by(name: attributes[:name])
+  client.update!(attributes)
+  [ attributes[:name], client ]
 end
 
 relationships = [

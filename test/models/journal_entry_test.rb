@@ -2,8 +2,8 @@ require "test_helper"
 
 class JournalEntryTest < ActiveSupport::TestCase
   test "loads client-wide and provider-specific journal entries" do
-    provider = Provider.create!(name: "Care Center", address: "123 Main Street")
-    client = Client.create!(name: "Alex Doe", address: "456 Oak Avenue")
+    provider = Provider.create!(name: "Care Center", email_address: "provider@example.com")
+    client = Client.create!(name: "Alex Doe", email_address: "client@example.com")
     provider_client_join = provider.provider_client_joins.create!(client:, plan: :premium)
 
     client_entry = client.journal_entries.create!(body: "Client-wide note")
@@ -15,7 +15,7 @@ class JournalEntryTest < ActiveSupport::TestCase
   end
 
   test "encrypts the body" do
-    client = Client.create!(name: "Alex Doe", address: "456 Oak Avenue")
+    client = Client.create!(name: "Alex Doe", email_address: "client@example.com")
     journal_entry = client.journal_entries.create!(body: "Private note")
 
     stored_body = JournalEntry.connection.select_value(
