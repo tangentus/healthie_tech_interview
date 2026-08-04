@@ -1,0 +1,4 @@
+interface:
+  display_name: "Track Project Prompts"
+  short_description: "Archive prompts and summarize project changes"
+  default_prompt: "Use $track-project-prompts to archive this request and summarize its impacted files and changes."
