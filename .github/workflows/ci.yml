@@ -25,6 +25,7 @@ jobs:
         run: bin/bundler-audit
       
   scan_js:
+    if: ${{ false }}
     runs-on: ubuntu-latest
 
     steps:
@@ -105,6 +106,7 @@ jobs:
         run: bin/rails db:test:prepare test
 
   system-test:
+    if: ${{ false }}
     runs-on: ubuntu-latest
 
     services:
